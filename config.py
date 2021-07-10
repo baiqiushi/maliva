@@ -6,7 +6,7 @@
 class PostgresConf:
     hostname = "localhost"
     username = "postgres"
-    password = "postgres"
+    password = "maliva"
     timeout = 4000  # 4 seconds
 
 
