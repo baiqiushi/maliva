@@ -1,0 +1,7 @@
+progressbar~=2.5
+numpy~=1.19.4
+scikit-learn~=0.24.1
+torch~=1.7.1
+psycopg2-binary~=2.8.6
+matplotlib
+pandas
