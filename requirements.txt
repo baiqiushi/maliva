@@ -1,4 +1,4 @@
-progressbar~=2.5
+progressbar
 numpy~=1.19.4
 scikit-learn~=0.24.1
 torch~=1.7.1
