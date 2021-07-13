@@ -237,7 +237,7 @@ def train_dqn(labeled_queries,
 
     if trace:
         print("start training DQN ...")
-        print("iteration, win_rate, avg_loss")
+        print("iteration, win_rate")
         traces = []
 
     start = time.time()
@@ -259,14 +259,10 @@ def train_dqn(labeled_queries,
             state = env.get_state()
             agent.reset()
 
-            # print("train query " + str(qid))
-
             while not env.done:
                 action = agent.select_action(strategy, state, policy_net)
                 plan = action + 1
-                # print("    try plan [" + str(plan) + "]")
                 reward = env.take_action(plan)
-                # print("        reward = " + str(reward))
                 next_state = env.get_state()
                 memory.push(Experience(state.get_tensor(),
                                        torch.tensor([action]),
@@ -279,17 +275,8 @@ def train_dqn(labeled_queries,
                 win_rate += 1
 
             if memory.can_provide_sample(batch_size):
-                # print("backward propagate ...")
                 experiences = memory.sample(batch_size)
                 states, actions, rewards, next_states = extract_tensors(experiences)
-                # print("---- states ----")
-                # print(states)
-                # print("---- actions ----")
-                # print(actions)
-                # print("---- rewards ----")
-                # print(rewards)
-                # print("---- next states ----")
-                # print(next_states)
 
                 current_q_values = QValues.get_current(policy_net, states, actions)
                 next_q_values = QValues.get_next(target_net, next_states)
@@ -299,11 +286,6 @@ def train_dqn(labeled_queries,
                 avg_loss += loss.tolist()
                 optimizer.zero_grad()
                 loss.backward()
-                # -- start --
-                # suggested by https://stackoverflow.com/questions/47036246/dqn-q-loss-not-converging
-                # for param in policy_net.parameters():
-                #     param.grad.data.clamp_(-1, 1)
-                # --- end ---
                 optimizer.step()
 
         if run % target_update == (target_update - 1):
@@ -314,7 +296,7 @@ def train_dqn(labeled_queries,
         model_memory.push(policy_net, win_rate)
 
         if trace:
-            print("%3d,    %1.2f,    %6.1f" % (run, win_rate, avg_loss))
+            print("%3d,    %1.2f" % (run, win_rate))
             traces.append([run, win_rate])
 
         if early_stop and model_memory.converged(0.1):
