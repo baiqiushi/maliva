@@ -19,3 +19,7 @@ echo "run_collect_sels_nyc.sh"
 ./run_collect_sels_nyc.sh
 
 date
+echo "run_output_sel_queries_costs_nyc.sh"
+./run_output_sel_queries_costs_nyc.sh
+
+date
