@@ -78,9 +78,9 @@ class NYC:
               "       pickup_coordinates " \
               "  FROM " + NYC.table + " t " \
               " WHERE t.pickup_datetime between '" + _query["start_time"] + "' and '" + _query["end_time"] + "'" \
-              "   AND t.trip_distance between " + _query["trip_distance_start"] + " and " + _query["trip_distance_end"] + \
-              "   AND t.pickup_coordinates <@ box '((" + _query["lng0"] + "," + _query["lat0"] + ")," \
-                                                   "(" + _query["lng1"] + "," + _query["lat1"] + "))'"
+              "   AND t.trip_distance between " + str(_query["trip_distance_start"]) + " and " + str(_query["trip_distance_end"]) + \
+              "   AND t.pickup_coordinates <@ box '((" + str(_query["lng0"]) + "," + str(_query["lat0"]) + ")," \
+                                                   "(" + str(_query["lng1"]) + "," + str(_query["lat1"]) + "))'"
 
         # generate hint if plan is 1 ~ 7
         if 1 <= _plan <= 7:
@@ -148,12 +148,12 @@ class NYC:
 
             # trip_distance
             if fc_bits[6] == 1:
-                sql = sql + " AND t.trip_distance between " + _query["trip_distance_start"] + " and " + _query["trip_distance_end"]
+                sql = sql + " AND t.trip_distance between " + str(_query["trip_distance_start"]) + " and " + str(_query["trip_distance_end"])
 
             # pickup_coordinates
             if fc_bits[7] == 1:
-                sql = sql + " AND t.pickup_coordinates <@ box '((" + _query["lng0"] + "," + _query["lat0"] + ")," \
-                                                               "(" + _query["lng1"] + "," + _query["lat1"] + "))'"
+                sql = sql + " AND t.pickup_coordinates <@ box '((" + str(_query["lng0"]) + "," + str(_query["lat0"]) + ")," \
+                                                               "(" + str(_query["lng1"]) + "," + str(_query["lat1"]) + "))'"
 
         start = time.time()
         _db.query(sql)
@@ -199,12 +199,12 @@ class NYC:
 
             # trip_distance
             if fc_bits[6] == 1:
-                sql = sql + " AND t.trip_distance between " + _query["trip_distance_start"] + " and " + _query["trip_distance_end"]
+                sql = sql + " AND t.trip_distance between " + str(_query["trip_distance_start"]) + " and " + str(_query["trip_distance_end"])
 
             # pickup_coordinates
             if fc_bits[7] == 1:
-                sql = sql + " AND t.pickup_coordinates <@ box '((" + _query["lng0"] + "," + _query["lat0"] + ")," \
-                                                               "(" + _query["lng1"] + "," + _query["lat1"] + "))'"
+                sql = sql + " AND t.pickup_coordinates <@ box '((" + str(_query["lng0"]) + "," + str(_query["lat0"]) + ")," \
+                                                               "(" + str(_query["lng1"]) + "," + str(_query["lat1"]) + "))'"
 
         sel = _db.query(sql)  # [(1,)]
         sel = sel[0][0]
