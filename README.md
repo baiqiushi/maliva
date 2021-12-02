@@ -6,21 +6,21 @@ We provide a [Tutorial](https://github.com/malivamlvis/maliva/wiki) to run Maliv
 Maliva is a middleware that optimizes visualization queries to compute results within a time constraint. It adopts Machine Learning techniques to add `hints` to the original SQL queries to help the database optimizer generate an efficient physical plan.
 
 <p align="center">
-  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/intro-slow-query.png" width="175">
-  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/intro-fast-query.png" width="175">
+  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/intro-slow-query.png" width="263">
+  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/intro-fast-query.png" width="263">
 </p>
 
 For expensive visualization queries that can not meet the time constraint no matter what hints are provided, Maliva also considers rewriting the original SQL query by applying approximation rules, e.g., running the same query on a smaller sample table.  In this case, Maliva jointly maximizes the chance of an approximate rewritten query meeting the time constraint and also quality of the approximate result.
 
 <p align="center">
-  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/intro-slow-query2.png" width="175">
-  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/intro-fast-query2.png" width="175">
+  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/intro-slow-query2.png" width="263">
+  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/intro-fast-query2.png" width="263">
 </p>
 
 The following figure shows the architecture of Maliva.
 
 <p align="center">
-  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/architecture.png" width="300">
+  <img src="https://github.com/malivamlvis/maliva/blob/main/pub/architecture.png" width="585">
 </p>
 
 The core module is the `MDP-based Query Rewriter`. It enumerates different possible rewrite options (i.e., query hints and/or approximation rules), asks the `Query Time Estimator (QTE)` to estimate the query time for each considered rewritten query, and then decides one rewritten query as the output. The Query Rewriter models the sequential decision-making of which rewritten query to estimate as a Markov Decision Process. It learns a good strategy from historical queries to balance the planning time and the querying time.
