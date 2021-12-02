@@ -3,11 +3,8 @@
 ####################
 from twitter import Twitter
 from twitter_join import TwitterJoin
-from twitter_join2 import TwitterJoin2
-from smart_featurizer_twitter import TwitterFeaturizer
 from nyc import NYC
 from tpch import TPCH
-from smart_featurizer_nyc import NYCFeaturizer
 
 
 class PostgreSQLConfig:
@@ -29,5 +26,4 @@ class QueryTimeEstimatorConfig:
 
 
 database_configs = {"postgresql": PostgreSQLConfig}
-datasets = {"twitter": Twitter, "nyc": NYC, "tpch": TPCH, "twitter_join": TwitterJoin, "twitter_join2": TwitterJoin2}
-featurizers = {"twitter": TwitterFeaturizer, "nyc": NYCFeaturizer}
+datasets = {"twitter": Twitter, "nyc": NYC, "tpch": TPCH, "twitter_join": TwitterJoin}
