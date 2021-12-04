@@ -3,6 +3,8 @@ This repository hosts the source code of the paper `Maliva` submitted to VLDB 20
 
 We provide a [Tutorial](https://github.com/malivamlvis/maliva/wiki) to run Maliva on top of PostgreSQL hosting 15 million NYC Taxi data.
 
+> (For more information on other datasets (Twitter, TPC-H), please contact us: baiqiushi@gmail.com.)
+
 Maliva is a middleware that optimizes visualization queries to compute results within a time constraint. It adopts Machine Learning techniques to add `hints` to the original SQL queries to help the database optimizer generate an efficient physical plan.
 
 <p align="center">
