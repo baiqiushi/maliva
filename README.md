@@ -1,5 +1,5 @@
 # Maliva: Using Machine Learning to Rewrite Visualization Queries Under Time Constraints
-This repository hosts the source code of the paper `Maliva` submitted to VLDB 2022.
+This repository hosts the source code of the paper `Maliva` submitted to EDBT 2023.
 
 We provide a [Tutorial](https://github.com/malivamlvis/maliva/wiki) to run Maliva on top of PostgreSQL hosting 15 million NYC Taxi data.
 
